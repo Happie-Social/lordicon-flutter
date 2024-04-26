@@ -261,64 +261,42 @@ class IconViewer extends StatefulWidget {
 }
 
 class IconViewerState extends State<IconViewer> with TickerProviderStateMixin {
-  late IconController _controller;
-  late double _width;
-  late double _height;
-  late Color? _colorize;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = widget.controller;
-    _width = widget.width;
-    _height = widget.height;
-    _colorize = widget.colorize;
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    var delegates = _colorize != null
+    var delegates = widget.colorize != null
         ? LottieDelegates(
             values: [
               ValueDelegate.color(
                 const ['**'],
-                value: _colorize,
+                value: widget.colorize,
               ),
               ValueDelegate.strokeColor(
                 const ['**'],
-                value: _colorize,
+                value: widget.colorize,
               ),
             ],
           )
         : null;
 
     return ListenableBuilder(
-        listenable: _controller,
+        listenable: widget.controller,
         builder: (BuildContext context, Widget? child) {
-          if (_controller._composition == null) {
+          if (widget.controller._composition == null) {
             return SizedBox(
-              width: _width,
-              height: _height,
+              width: widget.width,
+              height: widget.height,
             );
           }
 
-          if (!_controller.isReady) {
-            _controller._initialize(this);
+          if (!widget.controller.isReady) {
+            widget.controller._initialize(this);
           }
 
           return Lottie(
-            composition: _controller._composition,
-            controller: _controller._controller,
-            width: _width,
-            height: _height,
+            composition: widget.controller._composition,
+            controller: widget.controller._controller,
+            width: widget.width,
+            height: widget.height,
             delegates: delegates,
           );
         });

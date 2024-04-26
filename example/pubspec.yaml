@@ -28,3 +28,4 @@ flutter:
         - assets/trash.json
         - assets/lock.json
         - assets/lock-alt.json
+        - assets/disconnect-network-offline.json

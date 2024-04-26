@@ -4,6 +4,7 @@ import 'icon_click.dart';
 import 'icon_loop.dart';
 import 'icon_once.dart';
 import 'icon_trash.dart';
+import 'Icon_colorize.dart';
 
 class PageWelcome extends StatelessWidget {
   const PageWelcome({super.key});
@@ -31,6 +32,8 @@ class PageWelcome extends StatelessWidget {
               IconTrash(),
             ],
           ),
+          SizedBox(width: 20),
+          IconColorize(),
         ],
       ),
     );
